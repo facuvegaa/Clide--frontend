@@ -32,7 +32,8 @@ video {
 
   }
 
-  input[type=username], input[type=password] {
+select {
+    margin-top: 15px;
     width: 100%;
     display: flex;
     border: none;
@@ -42,11 +43,29 @@ video {
     font-size: 20px;
   }
 
-  input[type=username]:hover, input[type=password]:hover {
+  select:hover{
     opacity: 0.8;
   }
 
-  input[type=username]:focus, input[type=password]:focus {
+  select:focus{
+    outline: none;
+  }
+  
+  input[type=checkbox], input[type=email], input[type=username], input[type=password] {
+    width: 100%;
+    display: flex;
+    border: none;
+    border-bottom: 1px solid #3a3a3a;
+    border-radius: 1pc;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  input[type=email]:hover, input[type=username]:hover, input[type=password]:hover {
+    opacity: 0.8;
+  }
+
+  input[type=email]:focus, input[type=username]:focus, input[type=password]:focus {
     outline: none;
   }
 
@@ -75,6 +94,8 @@ video {
   .label-log{
     text-align: center;
     margin: auto;
+    padding-bottom: 15px ;
+    font-size: 20px;
   }
   
   .label-top{

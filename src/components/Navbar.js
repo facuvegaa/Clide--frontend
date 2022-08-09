@@ -1,11 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from './Button';
 import './Navbar.css'
 import '../App.css'
+import AuthContext from '../context/AuthContext';
 
 
 function Navbar() {
+
+
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -26,10 +29,47 @@ function Navbar() {
 
   window.addEventListener('resize', showButton);
 
+  let {user, logOutUser} = useContext(AuthContext)
+
   return (
     <>
+     {user ? (
      <nav className='navbar'>
-      <div className='navbar-container'>
+      <div className='navbar-container'>  
+        <Link to="/" className='navbar-logo' onClick={closeMobileMenu}>
+          CLIDE <i className='fab fa-typo3'/>
+        </Link>
+        <div className='menu-icon' onClick={handleClick}>
+          <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+        </div>
+        <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+          <li className='nav-item'>
+            <Link to="/" className='nav-links' onClick={closeMobileMenu}>
+              Home
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link to="/lorem" className='nav-links' onClick={closeMobileMenu}>
+              Lorem
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link to="/lorem2" className='nav-links' onClick={closeMobileMenu}>
+              Lorem 2
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link to="/" className='nav-links-mobile' onClick={closeMobileMenu}>
+              Logout
+            </Link>
+          </li>
+        </ul>
+        {button && <Button link={''} onClick={logOutUser} buttonStyle='btn--outline'> Logout </Button>}
+      </div>
+     </nav>
+    ) : (
+      <nav className='navbar'>
+      <div className='navbar-container'> 
         <Link to="/" className='navbar-logo' onClick={closeMobileMenu}>
           CLIDE <i className='fab fa-typo3'/>
         </Link>
@@ -58,9 +98,12 @@ function Navbar() {
             </Link>
           </li>
         </ul>
-        {button && <Button link={'login'} buttonStyle='btn--outline'> LOGIN </Button>}  
+        {button && <Button link={'login'} buttonStyle='btn--outline'> LOGIN </Button>}
       </div>
      </nav>
+    )
+
+    }
     </>
   )
 }

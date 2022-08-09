@@ -1,7 +1,7 @@
 import React from 'react'
-import '../../App.css'
-import Footer from '../Footer';
-import HeroSection from '../HeroSection'
+import '../App.css'
+import Footer from '../components/Footer';
+import HeroSection from '../components/HeroSection'
 
 function Home () {
     return(
